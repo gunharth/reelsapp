@@ -29,6 +29,8 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     
 	Route::resource('reels', 'ReelsController');
+
+	Route::resource('clips/thumbUploader', 'ClipsController@thumbUploader');
 	Route::resource('clips', 'ClipsController');
 
 });

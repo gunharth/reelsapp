@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>ReelsApp</title>
 	<link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.css">
 </head>
 <body>
 
@@ -16,13 +17,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Project name</a>
+        <a class="navbar-brand" href="/">ReelsApp</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li class="active"><a href="/clips">Clips</a></li>
+          <li><a href="#">Reels</a></li>
+          <li><a href="#">Directors</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -39,7 +40,23 @@
       @endif
     @yield('content')
 	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
+<script>
+  Dropzone.options.thumbDropzone = {
+    paramName: 'thumb',
+    maxFiles: 1,
+    maxFilesize: 50,
+    addRemoveLinks: true,
+    dictDefaultMessage: 'Drop thumbnail here to upload'
+  };
+  Dropzone.options.clipDropzone = {
+    paramName: 'clip',
+    maxFiles: 1,
+    maxFilesize: 50,
+    dictDefaultMessage: 'Drop clip here to upload'
+  };
+</script>
 
 </body>
 </html>

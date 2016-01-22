@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Storage;
 use App\Clip;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,8 @@ class ClipsController extends Controller
      */
     public function index()
     {
-        //
+        $clips = Clip::all();
+        return view('clips.index', compact('clips'));
     }
 
     /**
@@ -42,11 +44,11 @@ class ClipsController extends Controller
             'title' => 'required'
         ]);
 
-        Clip::create($request->all());
+        $clip = Clip::create($request->all());
 
         session()->flash('flash_message', 'Saved');
 
-        return redirect()->back();
+        return redirect()->route('clips.edit', [$clip->slug]);
     }
 
     /**
@@ -55,9 +57,12 @@ class ClipsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $clip = Clip::findBySlugOrFail($slug);
+        //$clip->image = Storage::get('1453469703phpBQmNa5.PNG');
+        dd($clip);
+        return view('clips.show', compact('clip'));
     }
 
     /**
@@ -66,9 +71,10 @@ class ClipsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $clip = Clip::findBySlugOrFail($slug);
+        return view('clips.edit', compact('clip'));
     }
 
     /**
@@ -80,7 +86,56 @@ class ClipsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $clip = Clip::findOrFail($id);
+
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        /*$filename = "";
+        if ($request->file('file')) {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $file->getFilename().'.'.$extension;
+           //Storage::disk('local')->put($filename ,  File::get($fileresized));
+            Image::make($request->file('file'))->fit(300, 401)->save(
+                base_path() . '/public/uploads/'.$filename
+            );
+            $request->merge(array('cover' => $filename));
+        }*/
+
+        $input = $request->all();
+
+        $clip->fill($input)->save();
+
+        \Session::flash('flash_message', trans('messages.create_success'));
+
+        return redirect()->route('clips.show', [$clip->slug]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function thumbUploader(Request $request)
+    {
+        $file = $request->file('thumb');
+        $extension = $file->getClientOriginalExtension();
+        //$original_filename = $file->getClientOriginalName();
+        $filename = time().$file->getFilename().'.'.$extension;
+        $resource = file_get_contents($file->getRealPath());
+        Storage::put($filename, $resource);
+    }
+    public function clipUploader(Request $request)
+    {
+        $file = $request->file('clip');
+        $extension = $file->getClientOriginalExtension();
+        //$original_filename = $file->getClientOriginalName();
+        $filename = time().$file->getFilename().'.'.$extension;
+        $resource = file_get_contents($file->getRealPath());
+        Storage::put($filename, $resource);
     }
 
     /**
