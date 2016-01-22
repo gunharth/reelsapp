@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
     
 	Route::resource('reels', 'ReelsController');
 
-	Route::resource('clips/thumbUploader', 'ClipsController@thumbUploader');
+	Route::post('clips/{slug}/addThumb', 'ClipsController@addThumb')->name('addClipThumb');
 	Route::resource('clips', 'ClipsController');
 
 });

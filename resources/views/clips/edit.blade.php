@@ -24,7 +24,7 @@
     <div class="row">
    <div class="col-sm-6">
         {!! Form::open(array(
-            'url' => 'clips/thumbUploader', 
+            'route' => ['addClipThumb', $clip->id],
             'id' => 'thumbDropzone',
             'class' => 'dropzone',
             'files' => true
@@ -37,7 +37,7 @@
     </div>
     <div class="col-sm-6">
         {!! Form::open(array(
-            'url' => 'clips/clipUploader', 
+            'url' => 'clips/{{ $clip->slug }}/clipUploader', 
             'id' => 'clipDropzone',
             'class' => 'dropzone',
             'files' => true

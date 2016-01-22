@@ -11,7 +11,8 @@ class Clip extends Model implements SluggableInterface
     use SluggableTrait;
 
     protected $fillable = [
-        'title'
+        'title',
+        'image'
     ];
 
     protected $sluggable = [

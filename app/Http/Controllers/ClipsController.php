@@ -61,7 +61,7 @@ class ClipsController extends Controller
     {
         $clip = Clip::findBySlugOrFail($slug);
         //$clip->image = Storage::get('1453469703phpBQmNa5.PNG');
-        dd($clip);
+        //dd($clip);
         return view('clips.show', compact('clip'));
     }
 
@@ -119,14 +119,22 @@ class ClipsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function thumbUploader(Request $request)
+    public function addThumb($id, Request $request)
     {
+
+        $clip = Clip::findOrFail($id);
+
         $file = $request->file('thumb');
         $extension = $file->getClientOriginalExtension();
         //$original_filename = $file->getClientOriginalName();
-        $filename = time().$file->getFilename().'.'.$extension;
+        $image = time().'_'.$file->getClientOriginalName();
+
+        $clip->image = $image;
+
         $resource = file_get_contents($file->getRealPath());
-        Storage::put($filename, $resource);
+        Storage::put($image, $resource);
+
+        $clip->save();
     }
     public function clipUploader(Request $request)
     {
