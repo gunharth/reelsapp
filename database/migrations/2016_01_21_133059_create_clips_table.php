@@ -17,6 +17,7 @@ class CreateClipsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image');
+            $table->string('video');
             $table->timestamps();
         });
     }

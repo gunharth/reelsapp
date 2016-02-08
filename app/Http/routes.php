@@ -31,6 +31,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('reels', 'ReelsController');
 
 	Route::post('clips/{slug}/addThumb', 'ClipsController@addThumb')->name('addClipThumb');
+	Route::post('clips/{slug}/addClip', 'ClipsController@addClip')->name('addClip');
 	Route::resource('clips', 'ClipsController');
 
 });

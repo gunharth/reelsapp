@@ -37,7 +37,7 @@
     </div>
     <div class="col-sm-6">
         {!! Form::open(array(
-            'url' => 'clips/{{ $clip->slug }}/clipUploader', 
+            'route' => ['addClip', $clip->id],
             'id' => 'clipDropzone',
             'class' => 'dropzone',
             'files' => true

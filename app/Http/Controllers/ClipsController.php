@@ -136,14 +136,21 @@ class ClipsController extends Controller
 
         $clip->save();
     }
-    public function clipUploader(Request $request)
+    public function addClip($id, Request $request)
     {
+        $clip = Clip::findOrFail($id);
+
         $file = $request->file('clip');
         $extension = $file->getClientOriginalExtension();
         //$original_filename = $file->getClientOriginalName();
-        $filename = time().$file->getFilename().'.'.$extension;
+        $video = time().'_'.$file->getClientOriginalName();
+
+        $clip->video = $video;
+
         $resource = file_get_contents($file->getRealPath());
-        Storage::put($filename, $resource);
+        Storage::put($video, $resource);
+
+        $clip->save();
     }
 
     /**
