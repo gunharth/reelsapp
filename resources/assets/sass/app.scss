@@ -1,4 +1,11 @@
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "node_modules/bootswatch/slate/stylesheets/bootstrap";
+
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "node_modules/bootswatch-sass/slate/variables";
+$gray-darker:            #000; // #222
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootswatch-sass/slate/bootswatch";
 
 
 body	{
