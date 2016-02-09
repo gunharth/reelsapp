@@ -5,6 +5,7 @@
 	<h1>Clips</h1>
 	<p>search <a href="/clips/create">New</a></p>
 
+
 	<div class="row">
 		@foreach($clips as $clip)
 		  <div class="col-sm-6 col-md-3">
@@ -21,6 +22,8 @@
 		    </div>
 		  </div>
 		@endforeach
+
+
 	</div>
 
 	<p>thumb categories client director created /// preview edit /// publish unpublish ///delete</p>

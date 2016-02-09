@@ -1093,8 +1093,8 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.428571429;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
+  background-color: #1c1e22;
+  border: 1px solid #0c0d0e;
   border-radius: 4px;
   transition: all 0.2s ease-in-out;
   display: inline-block;
@@ -4292,8 +4292,8 @@ a.badge:hover, a.badge:focus {
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.428571429;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
+  background-color: #1c1e22;
+  border: 1px solid #0c0d0e;
   border-radius: 4px;
   transition: border 0.2s ease-in-out; }
   .thumbnail > img,
@@ -6084,7 +6084,7 @@ legend {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #e3e3e3; }
+  border-color: #0c0d0e; }
 
 .jumbotron {
   border: 1px solid rgba(0, 0, 0, 0.6); }

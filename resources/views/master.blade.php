@@ -41,8 +41,7 @@
       @endif
     @yield('content')
 	</div>
-
-
+  
 <script src="http://vjs.zencdn.net/5.5.3/video.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
