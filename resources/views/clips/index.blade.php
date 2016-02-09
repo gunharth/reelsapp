@@ -12,7 +12,7 @@
 		  @foreach($cliparray as $clip)
 		  <div class="col-sm-6 col-md-3">
 		    <div class="thumbnail">
-		      <a href="/clips/{{ $clip->slug }}"><img src="{{ !empty($clip->image) && file_exists(public_path('uploads/'.$clip->image) ) ? asset('uploads/'.$clip->image) : 'http://placehold.it/640x360?text=no+image'  }}" alt="{{ $clip->title }}"></a>
+		      <a href="/clips/{{ $clip->slug }}"><img src="{{ $clip->image }}" alt="{{ $clip->title }}"></a>
 		      <div class="caption">
 		        <h3>{{ $clip->title }}</h3>
 		        <p>...</p>

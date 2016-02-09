@@ -1,23 +1,28 @@
 @extends('master')
 
 @section('content')
-	<h1>Create new Reel</h1>
-
-	{!! Form::open([
-        'route' => 'reels.store',
-        'class' => 'form-horizontal'
+    <div class="row vertical-align">
+        <div class="col-md-6"><h1>Add Reel</h1></div>
+        <div class="col-md-6">&nbsp;</div>
+    </div>
+    <hr>
+    
+<div class="row">
+    <div class="col-md-6">
+    <div class="well">
+    {!! Form::open([
+        'route' => 'reels.store'
     ]) !!}
     <div class="form-group">
-        {!! Form::label('title','Reel Title',['class' => 'col-sm-2']) !!}
-        <div class="col-sm-10">
-        {!! Form::text('title',null,['class' => 'form-control', 'placeholder' => 'Reel Title']) !!}
-        </div>
+        {!! Form::label('title','Reel Title') !!}
+        {!! Form::text('title',null,['class' => 'form-control', 'placeholder' => 'Reel Title', 'required' => 'required']) !!}
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          {!! Form::submit('Save',['class' => 'btn btn-primary']) !!}
-        </div>
+          {!! Form::submit('Save',['class' => 'btn btn-success']) !!}
       </div>
    {!! Form::close() !!}
+   </div>
+   </div>
+   </div>
 
 @stop
