@@ -6,8 +6,10 @@
 	<p>search <a href="/clips/create">New</a></p>
 
 
-	<div class="row">
-		@foreach($clips as $clip)
+	
+		@foreach($clips->chunk(4) as $cliparray)
+		  <div class="row">
+		  @foreach($cliparray as $clip)
 		  <div class="col-sm-6 col-md-3">
 		    <div class="thumbnail">
 		      <a href="/clips/{{ $clip->slug }}"><img src="{{ !empty($clip->image) && file_exists(public_path('uploads/'.$clip->image) ) ? asset('uploads/'.$clip->image) : 'http://placehold.it/640x360?text=no+image'  }}" alt="{{ $clip->title }}"></a>
@@ -21,10 +23,12 @@
 		      </div>
 		    </div>
 		  </div>
+		  @endforeach
+		  </div>
 		@endforeach
 
 
-	</div>
+	
 
 	<p>thumb categories client director created /// preview edit /// publish unpublish ///delete</p>
 @stop
