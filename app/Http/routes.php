@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +25,13 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    
+  Route::auth();
+  Route::get('/home', 'HomeController@index');
+
+  Route::get('/', function () {
+    return view('welcome');
+});
+
 	Route::resource('reels', 'ReelsController');
 
 	Route::post('clips/{slug}/addThumb', 'ClipsController@addThumb')->name('addClipThumb');

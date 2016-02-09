@@ -11,6 +11,17 @@ use App\Http\Controllers\Controller;
 
 class ClipsController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -161,6 +172,21 @@ class ClipsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $clip = Clip::findOrFail($id);
+        /* image delete - BUT as we do a softdelete not needed for now 
+        $image = $medium->cover;
+        if(File::isFile(public_path().'/uploads/'.$image)) {
+            File::delete(public_path().'/uploads/'.$image);
+        }*/
+        
+        if(!empty($clip->image) && Storage::exists($clip->image)) {
+            Storage::delete($clip->image);
+        }
+        if(!empty($clip->video) && Storage::exists($clip->video)) {
+            Storage::delete($clip->video);
+        }
+        $clip->delete();
+        \Session::flash('flash_message', trans('Clip deleted successfully'));
+        return redirect()->route('clips.index');
     }
 }

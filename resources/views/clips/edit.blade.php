@@ -1,7 +1,20 @@
 @extends('master')
 
 @section('content')
-	<h1>{{ $clip->title}}</h1>
+	
+    <div class="row vertical-align">
+        <div class="col-md-6"><h1>{{ $clip->title}}</h1></div>
+        <div class="col-md-6">
+            {!! Form::open([
+                'method' => 'DELETE',
+                'route' => ['clips.destroy', $clip->id],
+                'style' => 'display: inline;'
+            ]) !!}
+                 <a href="#" data-toggle="modal" data-target="#confirmDelete" data-title="Delete Clip" data-message="Do you really want to delete the clip  {{ $clip->title }} ?" data-action="Delete" class="btn btn-primary pull-right"><i class="fa fa-btn fa-trash-o" data-toggle="tooltip" data-original-title="delete"></i>Delete Clip</a>
+            {!! Form::close() !!}
+        </div>
+    </div>
+    <hr>
 
     <div class="row">
     <div class="col-md-6">
@@ -16,7 +29,7 @@
         {!! Form::text('title',null,['class' => 'form-control', 'placeholder' => 'Clip Title', 'required' => 'required']) !!}
     </div>
 
-          {!! Form::submit('Save',['class' => 'btn btn-primary']) !!}
+          {!! Form::submit('Save',['class' => 'btn btn-success']) !!}
 
    {!! Form::close() !!}
    </div>

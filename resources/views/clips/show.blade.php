@@ -1,15 +1,17 @@
 @extends('master')
 
 @section('content')
-	<h1>{{ $clip->title }}</h1>
-	<a href="/clips/{{ $clip->slug }}/edit">Edit</a>
-	
+
+  <div class="row vertical-align">
+    <div class="col-md-6"><h1>{{ $clip->title }}</h1></div>
+    <div class="col-md-6">
+    <a href="/clips/{{ $clip->slug }}/edit" class="btn btn-primary pull-right" role="button"><i class="fa fa-btn fa-pencil"></i>Edit</a></div>
+  </div>
+  <hr>
+
+
 	<div class="row">
-	<img src="/uploads/{{ $clip->image }}" alt="{{ $clip->title }}" class="img-responsive">
-	
-
-
-<video id="my-video" class="video-js" controls preload="auto" width="400" height="100%"
+<video id="my-video" class="video-js" controls preload="auto" width="640" height="360"
   poster="/uploads/{{ $clip->image }}" data-setup="{fluid: true}">
     <source src="/uploads/{{ $clip->video }}" type='video/mp4'>
     <!--<source src="MY_VIDEO.webm" type='video/webm'>-->

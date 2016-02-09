@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">MVP - ReelsApp</div>
+                <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    Landing Page.
+                    You are logged in! Something very important here ...
                 </div>
             </div>
         </div>
