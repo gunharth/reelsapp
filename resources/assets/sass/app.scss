@@ -10,6 +10,11 @@ $thumbnail-border:            $well-border;
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/bootswatch-sass/slate/bootswatch";
 
+* { outline: none; }
+
+.jw-tab-focus:focus, .jwplayer:focus, .jwplayer .jw-swf {
+    outline: none !important;
+}
 
 body	{
 	padding-top: 70px;
@@ -29,3 +34,7 @@ body	{
 	border-radius: 4px;
 	min-height: 115px;
 }
+
+#draggablePanelList .panel {
+        cursor: move;
+    }

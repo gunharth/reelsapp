@@ -6096,6 +6096,12 @@ a.thumbnail.active {
 .panel-info .panel-heading {
   border-color: #000; }
 
+* {
+  outline: none; }
+
+.jw-tab-focus:focus, .jwplayer:focus, .jwplayer .jw-swf {
+  outline: none !important; }
+
 body {
   padding-top: 70px; }
 
@@ -6114,5 +6120,8 @@ body {
   border: 0;
   border-radius: 4px;
   min-height: 115px; }
+
+#draggablePanelList .panel {
+  cursor: move; }
 
 /*# sourceMappingURL=app.css.map */

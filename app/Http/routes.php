@@ -38,4 +38,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('clips/{slug}/addClip', 'ClipsController@addClip')->name('addClip');
 	Route::resource('clips', 'ClipsController');
 
+	// public facing showreel
+	Route::get('/reel/{slug}', 'PublicController@show');
+
 });

@@ -1,18 +1,11 @@
-@extends('master')
+@extends('public.master')
 
 @section('content')
 
   <div class="row vertical-align">
     <div class="col-md-6"><h1>{{ $reel->title }}</h1></div>
-    <div class="col-md-6">
-    <a href="/reel/{{ $reel->slug }}" class="btn btn-primary pull-right" role="button" target="_blank"><i class="fa fa-btn fa-eye"></i>Public</a>
-    <a href="/reels/{{ $reel->slug }}/edit" class="btn btn-primary pull-right" role="button"><i class="fa fa-btn fa-pencil"></i>Edit</a>
-
-    </div>
   </div>
   <hr>
-
-
 	<div class="row">
   <div class="col-sm-12 col-md-10 col-md-offset-1">
     <div id="video"></div>

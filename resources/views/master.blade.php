@@ -73,9 +73,13 @@
 <script src="/js/app.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
-<script src="http://vjs.zencdn.net/5.5.3/video.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="http://vjs.zencdn.net/5.5.3/video.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+​<script src="/js/vendor/jwplayer-7.2.4/jwplayer.js"></script>
+<script>jwplayer.key="xCERQViWBtMxSklCl+RrOBdnJHk2qOE3ZVmLGA==";</script>
+
+@yield('scripts')
 
 <script>
   Dropzone.options.thumbDropzone = {
@@ -116,11 +120,11 @@
 
 
     var panelList = $('#draggablePanelList');
-
         panelList.sortable({
             // Only make the .panel-heading child elements support dragging.
             // Omit this to make then entire <li>...</li> draggable.
            //handle: '.panel-heading', 
+           axis: 'y',
             update: function() {
                 $('.panel', panelList).each(function(index, elem) {
                      var $listItem = $(elem),
