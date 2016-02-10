@@ -189,4 +189,10 @@ class ClipsController extends Controller
         \Session::flash('flash_message', trans('Clip deleted successfully'));
         return redirect()->route('clips.index');
     }
+
+    public function addToReel($id)
+    {
+        $clip = Clip::findOrFail($id);
+        return view('clips.partials.details', compact('clip'));
+    }
 }

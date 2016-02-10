@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Reel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -11,7 +10,7 @@ use App\Http\Controllers\Controller;
 class ReelsController extends Controller
 {
     
-/**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -86,6 +85,7 @@ class ReelsController extends Controller
     public function edit($slug)
     {
         $reel = Reel::findBySlugOrFail($slug);
+       // dd($reel->clips);
         return view('reels.edit', compact('reel'));
     }
 
@@ -133,7 +133,6 @@ class ReelsController extends Controller
      */
     public function addThumb($id, Request $request)
     {
-
         $reel = Reel::findOrFail($id);
 
         $file = $request->file('thumb');
@@ -180,14 +179,44 @@ class ReelsController extends Controller
             File::delete(public_path().'/uploads/'.$image);
         }*/
         
-        if(!empty($reel->image) && Storage::exists($reel->image)) {
+        if (!empty($reel->image) && Storage::exists($reel->image)) {
             Storage::delete($reel->image);
         }
-        if(!empty($reel->video) && Storage::exists($reel->video)) {
+        if (!empty($reel->video) && Storage::exists($reel->video)) {
             Storage::delete($reel->video);
         }
         $reel->delete();
         \Session::flash('flash_message', trans('Reel deleted successfully'));
         return redirect()->route('reels.index');
+    }
+
+    public function addClip($reel_id, $clip_id, $sort_id)
+    {
+        $reel = Reel::find($reel_id);
+        $reel->clips()->attach(array($clip_id => ['sort' => $sort_id]));
+        $pivot_id = $reel->latestClipAdded()->first()->pivot->id;
+        return $pivot_id;
+    }
+
+
+    public function sortClips(Request $request)
+    {
+        // Get the input from the jquery post
+        $order = $request->sortItem;
+        $i = 1;
+
+        foreach ($order as $item) {
+            \DB::table('clip_reel')->where('id', '=', $item)->update(array('sort' => $i));
+            $i++;
+        }
+        return 'ok';
+    }
+
+    public function removeClip($pivotID)
+    {
+        // Get the input from the jquery post
+            \DB::table('clip_reel')->where('id', '=', $pivotID)->delete();
+
+        return 'ok';
     }
 }

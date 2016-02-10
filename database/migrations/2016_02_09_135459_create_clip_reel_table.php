@@ -14,8 +14,9 @@ class CreateClipReelTable extends Migration
     {
         Schema::create('clip_reel', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('clip_id')->unsigned();
-            $table->integer('reel_id')->unsigned();
+            $table->integer('clip_id')->unsigned()->index();
+            $table->integer('reel_id')->unsigned()->index();
+            $table->integer('sort')->index();
             $table->timestamps();
         });
     }

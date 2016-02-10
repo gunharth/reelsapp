@@ -22,7 +22,12 @@ class Reel extends Model implements SluggableInterface
 
     public function clips()
     {
-        return $this->belongsToMany('App\Clip');
+        return $this->belongsToMany('App\Clip')->withPivot('id','sort')->orderBy('sort')->withTimestamps();
+    }
+
+    public function latestClipAdded()
+    {
+        return $this->belongsToMany('App\Clip')->withPivot('id','sort')->orderBy('sort','desc')->withTimestamps();
     }
 
 }

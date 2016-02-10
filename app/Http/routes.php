@@ -38,7 +38,37 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('clips/{slug}/addClip', 'ClipsController@addClip')->name('addClip');
 	Route::resource('clips', 'ClipsController');
 
-	// public facing showreel
+  /**
+   * Ajax Routes
+   */
+  Route::get('clip/{slup}', 'ClipsController@addToReel');
+  Route::get('reel/addclip/{reel_id}/{clip_id}/{sort_id}', 'ReelsController@addClip');
+  Route::get('reel/sortclips', 'ReelsController@sortClips');
+    Route::get('reel/removeclip/{pivot_id}', 'ReelsController@removeClip');
+
+	/**
+   * Autocompletes
+   */
+  Route::any('clipAutoComplete', function () {
+      $term = strtolower(Request::get('term'));
+      $return_array = array();
+      $data = DB::table("clips")
+          ->distinct()
+          ->select('id', 'title')
+          ->where('title', 'LIKE', '%'.$term.'%')
+          //->whereNull('deleted_at')
+          ->groupBy('title')
+          ->take(10)
+          ->get();
+      foreach ($data as $v) {
+          $return_array[] = array('id' => $v->id, 'label' => $v->title);
+      }
+      return Response::json($return_array);
+  });
+
+	/**
+   * Public Facing Reel
+   */
 	Route::get('/reel/{slug}', 'PublicController@show');
 
 });
