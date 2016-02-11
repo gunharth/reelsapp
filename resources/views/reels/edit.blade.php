@@ -38,10 +38,8 @@
     <div class="col-md-6">
        <div class="well">
           <h3>Clips</h3>
-          {!! Form::label('clip','Clip',['class' => 'col-sm-4']) !!}
-          {!! Form::text('clip',null,['class' => 'form-control ui-autocomplete-input clipAutoComplete', 'placeholder' => 'Clip Title']) !!}
-          <input type="hidden" name="client_id" id="client_id">
-
+          {!! Form::text('clip',null,['class' => 'form-control ui-autocomplete-input clipAutoComplete', 'placeholder' => 'Search for clip title']) !!}
+<p>&nbsp;</p>
            <ul id="draggablePanelList" class="list-unstyled">
               @foreach($reel->clips as $clip)
               <li class="panel panel-info" id="sortItem_{{ $clip->pivot->id }}">
@@ -71,9 +69,11 @@
         source: '/clipAutoComplete',
         //appendTo: $('#client').parent(),
         select: function(e, ui) {
+            e.preventDefault();
             var field = $(this).attr('name');
             var clip_id = ui.item.id;
             // $('#' + field + '_id').val(ui.item.id);
+            $(this).val('');
             $.ajax({
                 method: 'GET',
                 type: 'json',
@@ -146,7 +146,8 @@
 
         // on delete item reindex clips and update again
 
-        $('#draggablePanelList').on('click', '.removeClip', function() {
+        $('#draggablePanelList').on('click', '.removeClip', function(e) {
+            e.preventDefault();
             var pivotID = $(this).attr('data-pivot');
             $.ajax({
                         method: 'GET',

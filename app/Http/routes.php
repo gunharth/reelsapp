@@ -32,6 +32,10 @@ Route::group(['middleware' => ['web']], function () {
     return view('welcome');
 });
 
+  Route::get('/directors', function () {
+    return view('directors');
+});
+
 	Route::resource('reels', 'ReelsController');
 
   Route::resource('clips', 'ClipsController');

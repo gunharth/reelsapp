@@ -49,7 +49,7 @@
           </div>
         {!! Form::close() !!}
 
-        <h3>Clip <small>50MB max</small></h3>
+        <h3>Clip <small>50MB max, mp4 H.264</small></h3>
         {!! Form::open(array(
             'route' => ['addClip', $clip->id],
             'id' => 'clipDropzone',
