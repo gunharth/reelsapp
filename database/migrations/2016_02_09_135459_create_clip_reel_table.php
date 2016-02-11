@@ -18,6 +18,16 @@ class CreateClipReelTable extends Migration
             $table->integer('reel_id')->unsigned()->index();
             $table->integer('sort')->index();
             $table->timestamps();
+
+            $table->foreign('clip_id')
+                  ->references('id')
+                  ->on('clips')
+                  ->onDelete('cascade');
+
+            $table->foreign('reel_id')
+                  ->references('id')
+                  ->on('reels')
+                  ->onDelete('cascade');
         });
     }
 

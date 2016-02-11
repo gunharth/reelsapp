@@ -69,7 +69,7 @@ class ReelsController extends Controller
     public function show($slug)
     {
         $reel = Reel::findBySlugOrFail($slug);
-
+        //$clips = '';//$clips = $reel->clips;
         //dd($reel->clips);
         //$reel->image = Storage::get('1453469703phpBQmNa5.PNG');
         //dd($reel);
@@ -173,18 +173,6 @@ class ReelsController extends Controller
     public function destroy($id)
     {
         $reel = Reel::findOrFail($id);
-        /* image delete - BUT as we do a softdelete not needed for now 
-        $image = $medium->cover;
-        if(File::isFile(public_path().'/uploads/'.$image)) {
-            File::delete(public_path().'/uploads/'.$image);
-        }*/
-        
-        if (!empty($reel->image) && Storage::exists($reel->image)) {
-            Storage::delete($reel->image);
-        }
-        if (!empty($reel->video) && Storage::exists($reel->video)) {
-            Storage::delete($reel->video);
-        }
         $reel->delete();
         \Session::flash('flash_message', trans('Reel deleted successfully'));
         return redirect()->route('reels.index');

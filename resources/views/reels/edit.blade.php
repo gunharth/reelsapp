@@ -10,7 +10,7 @@
                 'route' => ['reels.destroy', $reel->id],
                 'style' => 'display: inline;'
             ]) !!}
-                 <a href="#" data-toggle="modal" data-target="#confirmDelete" data-title="Delete Clip" data-message="Do you really want to delete the clip  {{ $reel->title }} ?" data-action="Delete" class="btn btn-primary pull-right"><i class="fa fa-btn fa-trash-o" data-toggle="tooltip" data-original-title="delete"></i>Delete Reel</a>
+                 <a href="#" data-toggle="modal" data-target="#confirmDelete" data-title="Delete Reel" data-message="Do you really want to delete the reel  {{ $reel->title }} ?" data-action="Delete" class="btn btn-primary pull-right"><i class="fa fa-btn fa-trash-o" data-toggle="tooltip" data-original-title="delete"></i>Delete Reel</a>
             {!! Form::close() !!}
         </div>
     </div>
@@ -89,6 +89,7 @@
                     
                     $('#draggablePanelList').append(html);
                     $('#draggablePanelList .panel:eq('+sort_id+')').attr('id','sortItem_'+pivot_id);
+                    $('#draggablePanelList .panel:eq('+sort_id+')').find('.removeClip').attr('data-pivot',pivot_id);
                     //$('#' + field + 'Details').html(html);
                     //$('.ui-autocomplete').hide();
                 })
